@@ -366,6 +366,93 @@ int sort_sm_date_merge_sort(int first, int last) {
     }
     return 0;
 }
+int build_classes(List list) {
+    int A[50];
+    int m = chrVector.size();
+
+    for (int i = 0; i < m; i++) A[i] = 1;
+    for (int i = 0; i < m; i++) {
+        for (int l = 0; l < m; l++) {
+            int ss = 0;
+            for (int j = 0; j < chrVector[i].size(); j++) {
+                int s = 0;
+                for (int p = 0; p < chrVector[l].size(); p++) {
+                    if (i != l && A[i] != 0) {
+                        if (chrVector[i][j] == chrVector[l][p]) s = 1;
+                    }
+                }
+                ss = ss + s;
+
+            }
+
+            if (chrVector[i].size() == ss) A[i] = 0;
+
+        }
+    }
+    //////////////////////////////////////
+
+
+    for (int i = 0; i < m; i++) {
+        if (A[i] == 1) {
+            for (int j = 0; j < chrVector[i].size(); j++) {
+                /* cout << a.mass[j].name_s;*/
+                a.mass[j].date_s = list.search_d(chrVector[i][j]);
+                a.mass[j].name_s = chrVector[i][j];
+                a.mass[j].author_s = list.search_a(chrVector[i][j]);
+                a.mass[j].amount_of_pages_s = list.search_p(chrVector[i][j]);
+                /* cout << a.mass[j].date_s << " " << a.mass[j].name_s;*/
+                /* sort_sm_name_quicksort(chrVector[i].size(), a);*/
+                 /* cout <<  a.mass[j].name_s;*/
+            }
+            cout << "Which way of sort do you want?" << endl;
+            cout << "1-name_sort;" << endl;
+            cout << "2-amount_of_pages_sort;" << endl;
+            cout << "3-date_sort;" << endl;
+            int k;
+            cin >> k;
+            switch (k) {
+            case 1:
+                sort_sm_name_quicksort(chrVector[i].size());
+                for (int j = 0; j < chrVector[i].size(); j++) {
+                    cout << a.mass[j].name_s << endl;
+                }
+                break;
+            case 2:
+                sort_sm_amount_of_pages_insertion_sort(chrVector[i].size());
+                for (int j = 0; j < chrVector[i].size(); j++) {
+                    cout << a.mass[j].name_s << " " << a.mass[j].amount_of_pages_s << endl;
+                }
+                break;
+            case 3:
+                sort_sm_date_merge_sort(0, chrVector[i].size() - 1);
+                for (int j = 0; j < chrVector[i].size(); j++) {
+                    cout << a.mass[j].name_s << " " << a.mass[j].date_s << endl;
+                }
+                break;
+            }
+            ///
+           /* sort_sm_name_quicksort(chrVector[i].size());
+            for (int j = 0; j < chrVector[i].size(); j++) {
+                cout << a.mass[j].name_s<<endl;
+            }*/
+            ////////////////
+           /* sort_sm_amount_of_pages_insertion_sort(chrVector[i].size());
+            for (int j = 0; j < chrVector[i].size(); j++) {
+                cout << a.mass[j].name_s << " " << a.mass[j].amount_of_pages_s<<endl;
+            }*/
+            ////////////////
+            /*sort_sm_date_merge_sort(0, chrVector[i].size() - 1);
+            for (int j = 0; j < chrVector[i].size(); j++) {
+                cout << a.mass[j].name_s << " " << a.mass[j].date_s << endl;
+            }*/
+
+        }
+        cout << endl;
+    }
+    ////////////////
+
+    return 0;
+}
 int main()
 {
    
