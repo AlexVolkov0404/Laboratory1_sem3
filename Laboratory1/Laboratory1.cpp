@@ -265,6 +265,107 @@ struct List {
         return 0;
     }
 };
+int sort_sm_name_quicksort(int size) {
+    //Указатели в начало и в конец массива
+    int i = 0;
+    int j = size - 1;
+
+    //Центральный элемент массива
+    string mid = a.mass[size / 2].name_s;
+
+    //Делим массив
+    do {
+        //Пробегаем элементы, ищем те, которые нужно перекинуть в другую часть
+        //В левой части массива пропускаем(оставляем на месте) элементы, которые меньше центрального
+        while (a.mass[i].name_s < mid) {
+            i++;
+        }
+        //В правой части пропускаем элементы, которые больше центрального
+        while (a.mass[j].name_s > mid) {
+            j--;
+        }
+
+        //Меняем элементы местами
+        if (i <= j) {
+            string tmp = a.mass[i].name_s;
+            a.mass[i].name_s = a.mass[j].name_s;
+            a.mass[j].name_s = tmp;
+
+            i++;
+            j--;
+        }
+    } while (i <= j);
+
+
+    //Рекурсивные вызовы, если осталось, что сортировать
+    if (j > 0) {
+        //"Левый кусок"
+        sort_sm_name_quicksort(j + 1);
+    }
+    if (i < size) {
+        //"Првый кусок"
+        sort_sm_name_quicksort(size - i);
+    }
+    return 0;
+}
+int sort_sm_amount_of_pages_insertion_sort(int size) {
+    int counter = 0;
+    for (int i = 1; i < size; i++) {
+        for (int j = i; j > 0 && a.mass[j - 1].amount_of_pages_s > a.mass[j].amount_of_pages_s; j--) {
+            counter++;
+            int tmp = a.mass[j - 1].amount_of_pages_s;
+            string tmp2 = a.mass[j - 1].name_s;
+            a.mass[j - 1].amount_of_pages_s = a.mass[j].amount_of_pages_s;
+            a.mass[j - 1].name_s = a.mass[j].name_s;
+            a.mass[j].amount_of_pages_s = tmp;
+            a.mass[j].name_s = tmp2;
+        }
+    }
+    return 0;
+}
+
+int merge_sort(int first, int last) {
+    /*int first = 0;
+    int last = size - 1;*/
+    int middle, start, final, j;
+    int* mas2 = new int[100];
+    string* mas1 = new string[100];
+    middle = (first + last) / 2; //вычисление среднего элемента
+    start = first; //начало левой части
+    final = middle + 1; //начало правой части
+    for (j = first; j <= last; j++) //выполнять от начала до конца
+        if ((start <= middle) && ((final > last) || (a.mass[start].date_s < a.mass[final].date_s)))
+        {
+            mas2[j] = a.mass[start].date_s;
+            mas1[j] = a.mass[start].name_s;
+            start++;
+        }
+        else
+        {
+            mas2[j] = a.mass[final].date_s;
+            mas1[j] = a.mass[start].name_s;
+            final++;
+        }
+    //возвращение результата в список
+    for (j = first; j <= last; j++) {
+        a.mass[j].date_s = mas2[j];
+        a.mass[j].name_s = mas1[j];
+    }
+    delete[]mas2;
+    delete[]mas1;
+    return 0;
+}
+int sort_sm_date_merge_sort(int first, int last) {
+    /*int first = 0;*/
+    /*int last = size - 1;*/
+    if (first < last)
+    {
+        sort_sm_date_merge_sort(first, (first + last) / 2); //сортировка левой части
+        sort_sm_date_merge_sort((first + last) / 2 + 1, last); //сортировка правой части
+        merge_sort(first, last); //слияние двух частей
+    }
+    return 0;
+}
 int main()
 {
    
