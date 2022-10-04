@@ -29,6 +29,36 @@ struct list_s_book
         return *this;
     }
 };
+struct list_s
+{
+    list_s_book mass[100];
+    int last;
+};
+list_s a;
+class Book {
+public:
+    char name[256];
+    char author[256];
+    int date;
+    int amount_of_pages;
+    char annottation[256];
+};
+Book book;
+class Сharacter {
+public:
+    string ch_name;
+    vector<string> books;
+    vector<string> roles;
+};
+struct Node {
+    char l_name[256];
+    char l_author[256];
+    int l_date;
+    int l_amount_of_pages;
+    char l_annottation[256];
+    Node* next;
+    Node* prev;
+};
 int main()
 {
    
