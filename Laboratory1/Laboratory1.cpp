@@ -556,6 +556,101 @@ int del_book() {
 }
 int main()
 {
-   
+    ifstream file;
+
+    FILE* b;
+    if ((b = fopen("books.txt", "a+b")) == NULL) {
+        perror("Error occured while opening file");
+        return 1;
+    }
+    FILE* am;
+    if ((am = fopen("amount.txt", "r+b")) == NULL) {
+        perror("Error occured while opening file");
+        return 1;
+    }
+    /*fread(&size_l, sizeof(int), 1, am);
+    cout << size_l << endl;*/
+    /*book = { "Philosopher's_Stone","J.K.Rowling",2001,223,"en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher%27s_Stone" };*/
+    /*book={"Chamber_of_Secrets","J.K.Rowling",2002,251,"en.wikipedia.org/wiki/Harry_Potter_and_the_Chamber_of_Secrets"};*/
+  /*  book = { "Deathly_Hallows","J.K.Rowling",2007,607,"en.wikipedia.org/wiki/Harry_Potter_and_the_Deathly_Hallows" };*/
+ /*   book = { "Half-Blood_Prince","J.K.Rowling",2006,507,"en.wikipedia.org/wiki/Harry_Potter" };*/
+ /*   book = { "Order_of_the_Phoenix","J.K.Rowling",2005,766,"en.wikipedia.org/wiki/Harry_Potter_and_the_Order_of_the_Phoenix" };*/
+   /* book = { "Prisoner_of_Azkaban","J.K.Rowling",2003,317,"en.wikipedia.org/wiki/Harry_Potter_and_the_Prisoner_of_Azkaban" };*/
+ /*   book = { "Goblet_of_Fire","J.K.Rowling",2004,636,"en.wikipedia.org/wiki/Harry_Potter_and_the_Goblet_of_Fire" };*/
+  /*  book = { "The_Adventures_of_Tom_Sawyer","Mark Twain",1876,356,"en.wikipedia.org/wiki/The_Adventures_of_Tom_Sawyer" };*/
+   /* book = { "Adventures_of_Huckleberry_Finn","Mark Twain",1885,366,"en.wikipedia.org/wiki/Adventures_of_Huckleberry_Finn" };*/
+    /*book = { "Tom_Sawyer_Abroad","Mark Twain",1894,345,"en.wikipedia.org/wiki/Tom_Sawyer_Abroad" };*/
+   /* book = { "Tom_Sawyer_Detective","Mark Twain",1896,340,"en.wikipedia.org / wiki / Tom_Sawyer,_Detective" };*/
+   /* fwrite(&book, sizeof(class Book), 1, b);*/
+   /* for (int i = 0; i <11; i++) {
+          fread(&book, sizeof(class Book), 1, b);
+          cout << book.name << endl;
+    }*/
+
+
+    /* int k = sizeof(int);*/
+    List list;
+    /* fseek(am, -k, SEEK_CUR);*/
+    size_l = 11;
+    /* fwrite(&size_l, sizeof(int), 1, am);*/
+
+   /*  list.sort_big_amount_of_pages_buble_sort();*/
+    /* list.sort_big_date_quick_sort();
+     list.showl();*/
+    ofstream filew;
+    ifstream filer;
+    int o = 1;
+    int n;
+    list.push();
+    list.sort_big_name_clist_sort();
+    while (o == 1) {
+
+        text_menu();
+        cout << "choose your action: ";
+        cin >> n;
+        switch (n) {
+        case 1:
+            cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+            list.showl();
+            break;
+        case 2:
+            cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+            read_characters();
+            break;
+        case 3:
+            cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+            build_classes(list);
+            break;
+        case 4:
+            cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+            list.sort_big_amount_of_pages_buble_sort();
+            list.showl();
+            break;
+        case 5:
+            cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+
+            book_names.sort();
+            for (auto iter = book_names.begin(); iter != book_names.end(); iter++)
+            {
+                std::cout << *iter << "\n";
+            }
+
+            break;
+        case 6:
+            cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+            list.sort_big_date_quick_sort();
+            list.showl();
+            break;
+        case 7:
+            insert_b();
+            list.push_last();
+            break;
+        }
+    }
+
+
+    /* list.sort_big_name_clist_sort();*/
+    fclose(b);
+    fclose(am);
 }
 
