@@ -511,6 +511,49 @@ int read_characters() {
     filer.close();
     return 0;
 }
+int insert_b() {
+    FILE* b;
+    if ((b = fopen("books.txt", "a+b")) == NULL) {
+        perror("Error occured while opening file");
+        return 1;
+    }
+    cout << "name of book: ";
+    cin >> book.name;
+    cout << "author: ";
+    cin >> book.author;
+    cout << "date: ";
+    cin >> book.date;
+    cout << "ammount of pages: ";
+    cin >> book.amount_of_pages;
+    cout << "annottation: ";
+    cin >> book.annottation;
+    fseek(b, (size_l + 1) * sizeof(class Book), 0);
+    fwrite(&book, sizeof(class Book), 1, b);
+    size_l++;
+    fclose(b);
+}
+int del_book() {
+    FILE* b;
+    if ((b = fopen("books.txt", "r+b")) == NULL) {
+        perror("Error occured while opening file");
+        return 1;
+    }
+    cout << "which book do you want to del: ";
+    char bk[256];
+    cin >> bk;
+    int f = 0;
+    /* fread(&book, sizeof(class Book), 1, b);*/
+    while (strcmp(bk, book.name) != 0) {
+        f++;
+    }
+    fseek(b, size_l * sizeof(class Book), 0);
+    fread(&book, sizeof(class Book), 1, b);
+    fseek(b, f * sizeof(class Book), 0);
+    fwrite(&book, sizeof(class Book), 1, b);
+    size_l--;
+
+    fclose(b);
+}
 int main()
 {
    
