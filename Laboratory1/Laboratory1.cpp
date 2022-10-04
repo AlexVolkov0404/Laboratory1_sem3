@@ -453,6 +453,64 @@ int build_classes(List list) {
 
     return 0;
 }
+void text_menu() {
+    cout << "-----------------------------------------------" << endl;
+    cout << "[1] show the list of books;" << endl;
+    cout << "[2] show and read characters;" << endl;
+    cout << "[3] build series of books;" << endl;
+    cout << "[4] sort list by amount of pages;" << endl;
+    cout << "[5] sort list by name of books;" << endl;
+    cout << "[6] sort list by dates;" << endl;
+    cout << "[7] insert book;" << endl;
+    /* cout << "[8] del book;" << endl;*/
+    cout << "-----------------------------------------------" << endl;
+}
+int read_characters() {
+    ifstream filer;
+    Сharacter charact;
+    filer.open("characters.txt");
+    int i = -1;
+    int j = 0;
+    while (!filer.eof()) {
+        i++;
+        string s;
+        getline(filer, s);
+        charact.ch_name = s;
+        stringstream x;
+        string word;
+        getline(filer, s);
+        x << s;
+        vector<string> temp;
+        chrVector.push_back(temp);
+        while (x >> word) {
+            charact.books.push_back(word);
+            chrVector[i].push_back(word);
+
+        }
+
+        getline(filer, s);
+        stringstream y;
+        y << s;
+        while (y >> word) {
+            charact.roles.push_back(word);
+
+        }
+        /////////////////////////////////////////////////////////////////////////
+        cout << "*" << charact.ch_name << endl;
+        for (int j = 0; j < charact.books.size(); j++) {
+            cout << "||" << charact.books[j] << "(" << charact.roles[j] << ")" << endl;
+        }
+
+        charact.books.clear();
+        charact.roles.clear();
+        //////////////////////////////////////////////////////////////////////////
+    }
+
+
+
+    filer.close();
+    return 0;
+}
 int main()
 {
    
