@@ -454,7 +454,7 @@ int build_classes(List list) {
     return 0;
 }
 void text_menu() {
-    cout << "-----------------------------------------------" << endl;
+    cout << "------------------------------------------------" << endl;
     cout << "[1] show the list of books;" << endl;
     cout << "[2] show and read characters;" << endl;
     cout << "[3] build series of books;" << endl;
@@ -463,7 +463,7 @@ void text_menu() {
     cout << "[6] sort list by dates;" << endl;
     cout << "[7] insert book;" << endl;
     /* cout << "[8] del book;" << endl;*/
-    cout << "-----------------------------------------------" << endl;
+    cout << "------------------------------------------------" << endl;
 }
 int read_characters() {
     ifstream filer;
