@@ -563,11 +563,11 @@ int main()
         perror("Error occured while opening file");
         return 1;
     }
-    FILE* am;
+   /* FILE* am;
     if ((am = fopen("amount.txt", "r+b")) == NULL) {
         perror("Error occured while opening file");
         return 1;
-    }
+    }*/
     /*fread(&size_l, sizeof(int), 1, am);
     cout << size_l << endl;*/
     /*book = { "Philosopher's_Stone","J.K.Rowling",2001,223,"en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher%27s_Stone" };*/
@@ -651,6 +651,6 @@ int main()
 
     /* list.sort_big_name_clist_sort();*/
     fclose(b);
-    fclose(am);
+   /* fclose(am);*/
 }
 
