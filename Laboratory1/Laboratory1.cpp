@@ -91,7 +91,7 @@ struct List {
         return 0;
     }
     int push_last() {
-        /*Book book;*/
+      
         FILE* b;
         if ((b = fopen("books.txt", "r+b")) == NULL) {
             perror("Error occured while opening file");
@@ -266,26 +266,25 @@ struct List {
     }
 };
 int sort_sm_name_quicksort(int size) {
-    //Указатели в начало и в конец массива
+   
     int i = 0;
     int j = size - 1;
 
-    //Центральный элемент массива
+    
     string mid = a.mass[size / 2].name_s;
 
-    //Делим массив
+    
     do {
-        //Пробегаем элементы, ищем те, которые нужно перекинуть в другую часть
-        //В левой части массива пропускаем(оставляем на месте) элементы, которые меньше центрального
+       
         while (a.mass[i].name_s < mid) {
             i++;
         }
-        //В правой части пропускаем элементы, которые больше центрального
+       
         while (a.mass[j].name_s > mid) {
             j--;
         }
 
-        //Меняем элементы местами
+       
         if (i <= j) {
             string tmp = a.mass[i].name_s;
             a.mass[i].name_s = a.mass[j].name_s;
@@ -297,13 +296,13 @@ int sort_sm_name_quicksort(int size) {
     } while (i <= j);
 
 
-    //Рекурсивные вызовы, если осталось, что сортировать
+   
     if (j > 0) {
-        //"Левый кусок"
+        
         sort_sm_name_quicksort(j + 1);
     }
     if (i < size) {
-        //"Првый кусок"
+        
         sort_sm_name_quicksort(size - i);
     }
     return 0;
@@ -325,15 +324,14 @@ int sort_sm_amount_of_pages_insertion_sort(int size) {
 }
 
 int merge_sort(int first, int last) {
-    /*int first = 0;
-    int last = size - 1;*/
+   
     int middle, start, final, j;
     int* mas2 = new int[100];
     string* mas1 = new string[100];
-    middle = (first + last) / 2; //вычисление среднего элемента
-    start = first; //начало левой части
-    final = middle + 1; //начало правой части
-    for (j = first; j <= last; j++) //выполнять от начала до конца
+    middle = (first + last) / 2; 
+    start = first; 
+    final = middle + 1; 
+    for (j = first; j <= last; j++) 
         if ((start <= middle) && ((final > last) || (a.mass[start].date_s < a.mass[final].date_s)))
         {
             mas2[j] = a.mass[start].date_s;
@@ -346,7 +344,7 @@ int merge_sort(int first, int last) {
             mas1[j] = a.mass[start].name_s;
             final++;
         }
-    //возвращение результата в список
+   
     for (j = first; j <= last; j++) {
         a.mass[j].date_s = mas2[j];
         a.mass[j].name_s = mas1[j];
@@ -356,13 +354,12 @@ int merge_sort(int first, int last) {
     return 0;
 }
 int sort_sm_date_merge_sort(int first, int last) {
-    /*int first = 0;*/
-    /*int last = size - 1;*/
+  
     if (first < last)
     {
-        sort_sm_date_merge_sort(first, (first + last) / 2); //сортировка левой части
-        sort_sm_date_merge_sort((first + last) / 2 + 1, last); //сортировка правой части
-        merge_sort(first, last); //слияние двух частей
+        sort_sm_date_merge_sort(first, (first + last) / 2); 
+        sort_sm_date_merge_sort((first + last) / 2 + 1, last); 
+        merge_sort(first, last); 
     }
     return 0;
 }
@@ -461,8 +458,8 @@ void text_menu() {
     cout << "[4] sort list by amount of pages;" << endl;
     cout << "[5] sort list by name of books;" << endl;
     cout << "[6] sort list by dates;" << endl;
-    cout << "[7] insert book;" << endl;
-    /* cout << "[8] del book;" << endl;*/
+   /* cout << "[7] insert book;" << endl;*/
+   
     cout << "------------------------------------------------" << endl;
 }
 int read_characters() {
@@ -541,8 +538,7 @@ int del_book() {
     cout << "which book do you want to del: ";
     char bk[256];
     cin >> bk;
-    int f = 0;
-    /* fread(&book, sizeof(class Book), 1, b);*/
+    int f = 0;    
     while (strcmp(bk, book.name) != 0) {
         f++;
     }
@@ -563,52 +559,20 @@ int main()
         perror("Error occured while opening file");
         return 1;
     }
-   /* FILE* am;
-    if ((am = fopen("amount.txt", "r+b")) == NULL) {
-        perror("Error occured while opening file");
-        return 1;
-    }*/
-    /*fread(&size_l, sizeof(int), 1, am);
-    cout << size_l << endl;*/
-    /*book = { "Philosopher's_Stone","J.K.Rowling",2001,223,"en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher%27s_Stone" };*/
-    /*book={"Chamber_of_Secrets","J.K.Rowling",2002,251,"en.wikipedia.org/wiki/Harry_Potter_and_the_Chamber_of_Secrets"};*/
-  /*  book = { "Deathly_Hallows","J.K.Rowling",2007,607,"en.wikipedia.org/wiki/Harry_Potter_and_the_Deathly_Hallows" };*/
- /*   book = { "Half-Blood_Prince","J.K.Rowling",2006,507,"en.wikipedia.org/wiki/Harry_Potter" };*/
- /*   book = { "Order_of_the_Phoenix","J.K.Rowling",2005,766,"en.wikipedia.org/wiki/Harry_Potter_and_the_Order_of_the_Phoenix" };*/
-   /* book = { "Prisoner_of_Azkaban","J.K.Rowling",2003,317,"en.wikipedia.org/wiki/Harry_Potter_and_the_Prisoner_of_Azkaban" };*/
- /*   book = { "Goblet_of_Fire","J.K.Rowling",2004,636,"en.wikipedia.org/wiki/Harry_Potter_and_the_Goblet_of_Fire" };*/
-  /*  book = { "The_Adventures_of_Tom_Sawyer","Mark Twain",1876,356,"en.wikipedia.org/wiki/The_Adventures_of_Tom_Sawyer" };*/
-   /* book = { "Adventures_of_Huckleberry_Finn","Mark Twain",1885,366,"en.wikipedia.org/wiki/Adventures_of_Huckleberry_Finn" };*/
-    /*book = { "Tom_Sawyer_Abroad","Mark Twain",1894,345,"en.wikipedia.org/wiki/Tom_Sawyer_Abroad" };*/
-   /* book = { "Tom_Sawyer_Detective","Mark Twain",1896,340,"en.wikipedia.org / wiki / Tom_Sawyer,_Detective" };*/
-   /* fwrite(&book, sizeof(class Book), 1, b);*/
-   /* for (int i = 0; i <11; i++) {
-          fread(&book, sizeof(class Book), 1, b);
-          cout << book.name << endl;
-    }*/
-
-
-    /* int k = sizeof(int);*/
-    List list;
-    /* fseek(am, -k, SEEK_CUR);*/
-    size_l = 11;
-    /* fwrite(&size_l, sizeof(int), 1, am);*/
-
-   /*  list.sort_big_amount_of_pages_buble_sort();*/
-    /* list.sort_big_date_quick_sort();
-     list.showl();*/
+    size_l = 11;  
+    List list;  
     ofstream filew;
     ifstream filer;
-    int o = 1;
-    int n;
+   
+    int variant;
     list.push();
     list.sort_big_name_clist_sort();
-    while (o == 1) {
+    while (true) {
 
         text_menu();
         cout << "choose your action: ";
-        cin >> n;
-        switch (n) {
+        cin >> variant;
+        switch (variant) {
         case 1:
             cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
             list.showl();
@@ -649,8 +613,8 @@ int main()
     }
 
 
-    /* list.sort_big_name_clist_sort();*/
+    
     fclose(b);
-   /* fclose(am);*/
+   
 }
 
